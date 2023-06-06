@@ -1,0 +1,258 @@
+<!-- Weather Forecast using HTML, CSS and JavaScript -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" href="favicon.png">
+  <title>Weather App</title>
+  <style>
+    body {
+      margin: 0;
+    }
+
+    #main-container {
+      position: relative;
+      height: 100vh;
+      background-image: url(https://images.unsplash.com/photo-1507149677524-254e3ebb240f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80);
+      background-size: cover;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: row;
+    }
+
+    #location-input-container,
+    #weather-container,
+    .widgets {
+      flex: 1;
+    }
+
+
+    #location-input {
+      border-radius: 50px;
+      width: 300px;
+      height: 40px;
+      background: transparent;
+      font-size: 25px;
+      padding-left: 20px;
+      color: white;
+    }
+
+    #location-input-container {
+      padding-top: 20px;
+      padding-left: 20px;
+    }
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
+    #weather-container {
+      float: left;
+      margin-top: 50px;
+      height: 650px;
+      width: 35%;
+      color: white;
+      padding-left: 50px;
+      font-family: sans-serif;
+      font-size: 20px;
+      text-align: left;
+      position: fixed;
+    }
+
+    .widgets {
+      font-size: 20px;
+      color: white;
+      border-left-style: groove;
+      height: 100%;
+      width: 57%;
+      float: right;
+      overflow-y: auto;
+    }
+
+    #Weather {
+      font-weight: bold;
+    }
+
+    #TOKYO {
+      margin: 5px;
+      padding: 50px;
+    }
+
+    #newyork {
+      margin: 5px;
+      padding: 50px;
+    }
+
+    #chennai {
+      margin: 5px;
+      padding: 50px;
+    }
+
+    #newdelhi {
+      margin: 5px;
+      padding: 50px;
+    }
+
+    #moscow {
+      margin: 5px;
+      padding: 50px;
+    }
+
+    #london {
+      margin: 5px;
+      padding: 50px;
+    }
+
+    #kathmandu {
+      margin: 5px;
+      padding: 50px;
+    }
+
+    #melbourne {
+      margin: 5px;
+      padding: 50px;
+    }
+
+    #saopaulo {
+      margin: 5px;
+      padding: 50px;
+    }
+
+    #amsterdam {
+      margin: 5px;
+      padding: 50px;
+    }
+
+    .fa {
+      color: white;
+    }
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    function displayWeather(city, element) {
+      var API_KEY = '7cad1f669c767f7b7f2e28b1bdb43eca';
+      var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + API_KEY;
+
+      $.ajax({
+        type: 'GET',
+        url: url,
+        success: function (data) {
+          element.innerHTML =
+            '<p><b>' + data.name.toUpperCase(0) + '</b></p>' +
+            '<p style="font-size:35px;">' + (data.main.temp - 273.15).toFixed(1) + ' &#8451;</p>'
+            + '<p>' + data.weather[0].description + '</p>';
+        }
+      });
+    }
+  </script>
+</head>
+
+<body>
+  <div id="main-container">
+    <div id="location-input-container">
+      <input id="location-input" placeholder="Location">
+    </div>
+
+    <div id="weather-container">
+
+      <p id="icon"></p>
+      <p id="Weather"></p>
+
+      <p id="Temp"></p>
+      <p id="Feels_like"></p>
+      <p id="min_temp"></p>
+      <p id="max_temp"></p>
+      <p id="pressure"></p>
+      <p id="Humidity"></p>
+      <p id="wind"></p>
+    </div>
+
+    <div class="widgets">
+
+      <div id="TOKYO" style="display: inline-block;"></div>
+      <script>displayWeather('TOKYO', document.getElementById('TOKYO'))</script>
+
+      <div id="newyork" style="display: inline-block;"></div>
+      <script>displayWeather('New York', document.getElementById('newyork'))</script>
+
+      <div id="newdelhi" style="display: inline-block;"></div>
+      <script>displayWeather('New Delhi', document.getElementById('newdelhi'))</script>
+
+      <div id="moscow" style="display: inline-block;"></div>
+      <script>displayWeather('Moscow', document.getElementById('moscow'))</script>
+
+      <div id="chennai" style="display: inline-block;"></div>
+      <script>displayWeather('Chennai', document.getElementById('chennai'))</script>
+
+      <div id="kathmandu" style="display: inline-block;"></div>
+      <script>displayWeather('kathmandu', document.getElementById('kathmandu'))</script>
+
+      <div id="melbourne" style="display: inline-block;"></div>
+      <script>displayWeather('melbourne', document.getElementById('melbourne'))</script>
+
+      <div id="amsterdam" style="display: inline-block;"></div>
+      <script>displayWeather('amsterdam', document.getElementById('amsterdam'))</script>
+
+      <div id="saopaulo" style="display: inline-block;"></div>
+      <script>displayWeather('Sao Paulo', document.getElementById('saopaulo'))</script>
+
+    </div>
+  </div>
+
+  <script>
+
+    var data = document.getElementById("data");
+    var key = "7cad1f669c767f7b7f2e28b1bdb43eca";
+    var locationInput = document.getElementById("location-input");
+    locationInput.addEventListener("change", getWeatherData);
+    var weatherContainer = document.getElementById("weather-container");
+
+    function getWeatherData() {
+      var location = locationInput.value;
+      if (location) {
+        fetch("https://api.openweathermap.org/data/2.5/weather?q=" + location + "&appid=" + key)
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+            fetchData(data)
+          })
+      } else {
+        data.innerHTML = "Provide Location";
+      }
+    }
+
+    function fetchData(data) {
+      const icon = "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png"
+      var location = locationInput.value;
+      document.getElementById("Temp").innerHTML = "<b>Temp: </b>" + parseFloat((data.main.temp - 273.15)).toFixed(1) + "℃"
+      document.getElementById("Feels_like").innerHTML = "<b>Feels Like: </b>" + parseFloat((data.main.feels_like - 273.15)).toFixed(1) + "℃"
+      document.getElementById("min_temp").innerHTML = "<b>Min Temp: </b>" + parseFloat((data.main.temp_min - 273.15)).toFixed(1) + "℃"
+      document.getElementById("max_temp").innerHTML = "<b>Max Temp: </b>" + parseFloat((data.main.temp_max - 273.15)).toFixed(1) + "℃"
+      document.getElementById("pressure").innerHTML = "<b>Pressure: </b>" + data.main.pressure + "hPa"
+      document.getElementById("Humidity").innerHTML = "<b>Humidity: </b>" + data.main.humidity + "%"
+
+      var weather = data.weather[0].description
+      var words = weather.split(" ")
+      for (var i = 0; i < words.length; i++) {
+        words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1)
+      }
+      weather = words.join(" ")
+      document.getElementById("Weather").innerHTML = weather
+      document.getElementById("wind").innerHTML = "<b>Wind: </b>" + data.wind.speed;
+      document.getElementById("icon").innerHTML = "<br><img src=" + icon + "></br>"
+    }
+
+    getWeatherData()
+
+  </script>
+
+
+</body>
+
+</html>
